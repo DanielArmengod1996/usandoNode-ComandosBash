@@ -1,0 +1,17 @@
+{
+  "name": "workautomated",
+  "version": "1.0.0",
+  "description": "My eggs are so inflated to make all days the same commands, so I automated this usual work.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "hey"
+  ],
+  "author": "Dans Gogh",
+  "license": "ISC",
+  "dependencies": {
+    "child_process": "^1.0.2"
+  }
+}
