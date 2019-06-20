@@ -16,15 +16,19 @@ async function fastCommitPrueba() {
     console.log(command);
     var stdin = process.openStdin();
     var commitMessage;
+    console.log('escriba el mensaje del commit :: ');
+    
     stdin.addListener("data", function(d){
       commitMessage = d.toString();
       console.log( "usted ha escito" + commitMessage );
     });
-    command = await execCommand('git commit -m "{!commitMessage}"');
+    
+    command = await execCommand(`git commit -m "{!commitMessage}"`);
     console.log(command);
     command = await execCommand('git push');
+    console.log( 'COMANDO FINAL :: ' +  command );
+
   }
-  console.log( 'COMANDO FINAL :: ' +  command );
 }
 
 
