@@ -22,18 +22,21 @@ async function fastCommitPrueba() {
     var stdin = process.openStdin();
     var commitMessage;
     
-    readLine.question(`escriba el mensaje del commit :: `, (commit) =>{
-      commitMessage = commit;
+    readLine.question(`escriba el mensaje del commit :: `, (commitMessage) =>{
+      realiseCommit(commitMessage);
       readLine.close();
     });
 
 
-    command = await execCommand(`git commit -m "{!commitMessage}"`);
-    console.log(command);
-    command = await execCommand('git push');
-    console.log( 'COMANDO FINAL :: ' +  command );
 
   }
+}
+
+async function realiseCommit( message ){
+  command = await execCommand(`git commit -m "{!commitMessage}"`);
+  console.log(command);
+  command = await execCommand('git push');
+  console.log( 'COMANDO FINAL :: ' +  command );
 }
 
 
