@@ -1,6 +1,10 @@
 const util = require('util');
 const exec = util.promisify(require('child_process').exec);
 
+const readLine = require('readline').createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
 
 async function execCommand(command){
   const { stdout, stderr } = await exec(command);
@@ -14,15 +18,16 @@ async function fastCommitPrueba() {
   if( command.includes('modified') ){
     command = await execCommand('git add .');
     console.log(command);
+
     var stdin = process.openStdin();
     var commitMessage;
-    console.log('escriba el mensaje del commit :: ');
     
-    stdin.addListener("data", function(d){
-      commitMessage = d.toString();
-      console.log( "usted ha escito" + commitMessage );
+    readLine.question(`escriba el mensaje del commit :: `, (commit) =>{
+      commitMessage = commit;
+      readLine.close();
     });
-    
+
+
     command = await execCommand(`git commit -m "{!commitMessage}"`);
     console.log(command);
     command = await execCommand('git push');
